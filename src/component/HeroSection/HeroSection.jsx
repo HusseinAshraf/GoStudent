@@ -44,7 +44,7 @@ const HeroSection = () => {
                                 to="/booking"
                                 className="block text-center w-full px-6 py-3 sm:text-base text-sm lg:text-lg rounded ring-2 ring-[rgb(125,125,225)] text-[rgb(11,47,172)] bg-white hover:bg-GSblue/50 hover:ring-GSblue/300"
                             >
-                                Book a free trial lesson &gt;
+                                Book a trial lesson &gt;
                             </Link>
                         </div>
 

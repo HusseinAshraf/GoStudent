@@ -15,16 +15,22 @@ i18n.use(initReactI18next).init({
   interpolation: { escapeValue: false },
 });
 
-i18n.on("languageChanged", (lng) => {
-  if (lng === "ar") {
+// Set the language and direction on page load
+const setLanguageDirection = (language) => {
+  if (language === "ar") {
     document.documentElement.dir = "rtl";
     document.documentElement.lang = "ar";
-    localStorage.setItem("language", "ar");
   } else {
     document.documentElement.dir = "ltr";
     document.documentElement.lang = "en";
-    localStorage.setItem("language", "en");
   }
+};
+
+setLanguageDirection(savedLanguage); // Apply the language and direction on initial load
+
+i18n.on("languageChanged", (lng) => {
+  setLanguageDirection(lng); // Update the direction when the language changes
+  localStorage.setItem("language", lng); // Save the selected language to localStorage
 });
 
 export default i18n;

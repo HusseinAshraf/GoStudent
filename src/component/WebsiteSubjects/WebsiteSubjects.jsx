@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';  // استيراد i18next
+import { useTranslation } from 'react-i18next';  
 
 const subjects = [
     { title: 'maths', imgSrc: 'https://assets.gostudent.org/f/192322/48x48/20ffab5a71/icn_maths.svg', link: 'https://www.gostudent.org/en-gb/online-tutoring/maths/' },
@@ -17,7 +17,7 @@ const subjects = [
 ];
 
 const WebsiteSubjects = () => {
-    const { t } = useTranslation();  // استخدام الترجمة
+    const { t } = useTranslation();  
     const [showSubjects, setShowSubjects] = useState(false);
 
     const toggleSubjects = () => {

@@ -154,9 +154,15 @@ const BookingForm = () => {
                     <p className="text-center text-sm text-gray-500">{t("platformInfo")}</p>
 
                     <PhoneField label={t("loginPhone")} name="loginPhone" setFieldValue={formik.setFieldValue} />
-                    <div className="text-red-500 text-sm">{formik.errors.loginPhone}</div>
+                    {formik.touched.loginPhone && formik.errors.loginPhone && (
+                        <div className="text-red-500 text-sm">{formik.errors.loginPhone}</div>
+                    )}
+
                     <PhoneField label={t("contactPhone")} name="contactPhone" setFieldValue={formik.setFieldValue} />
-                    <div className="text-red-500 text-sm">{formik.errors.contactPhone}</div>
+                    {formik.touched.contactPhone && formik.errors.contactPhone && (
+                        <div className="text-red-500 text-sm">{formik.errors.contactPhone}</div>
+                    )}
+
 
                     <input
                         name="email"
@@ -166,7 +172,10 @@ const BookingForm = () => {
                         value={formik.values.email}
                         onChange={formik.handleChange}
                     />
-                    <div className="text-red-500 text-sm">{formik.errors.email}</div>
+                    {formik.touched.email && formik.errors.email && (
+                        <div className="text-red-500 text-sm">{formik.errors.email}</div>
+                    )}
+
 
                     <input
                         name="name"
@@ -176,7 +185,10 @@ const BookingForm = () => {
                         value={formik.values.name}
                         onChange={formik.handleChange}
                     />
-                    <div className="text-red-500 text-sm">{formik.errors.name}</div>
+                    {formik.touched.name && formik.errors.name && (
+                        <div className="text-red-500 text-sm">{formik.errors.name}</div>
+                    )}
+
 
                     <div className="grid grid-cols-2 gap-2">
                         <input
@@ -198,8 +210,14 @@ const BookingForm = () => {
                         />
                     </div>
                     <div className="flex justify-between items-center">
-                        <div className="text-red-500 text-sm">{formik.errors.address}</div>
-                        <div className="text-red-500 text-sm">{formik.errors.nr}</div>
+                        {formik.touched.address && formik.errors.address && (
+                            <div className="text-red-500 text-sm">{formik.errors.address}</div>
+                        )}
+
+                        {formik.touched.nr && formik.errors.nr && (
+                            <div className="text-red-500 text-sm">{formik.errors.nr}</div>
+                        )}
+
                     </div>
 
                     <div className="grid grid-cols-3 gap-2">
@@ -228,9 +246,18 @@ const BookingForm = () => {
                             onChange={formik.handleChange}
                         />
 
-                        <div className="text-red-500 text-sm">{formik.errors.postalCode}</div>
-                        <div className="text-red-500 text-sm">{formik.errors.city}</div>
-                        <div className="text-red-500 text-sm">{formik.errors.country}</div>
+                        {formik.touched.postalCode && formik.errors.postalCode && (
+                            <div className="text-red-500 text-sm">{formik.errors.postalCode}</div>
+                        )}
+
+                        {formik.touched.city && formik.errors.city && (
+                            <div className="text-red-500 text-sm">{formik.errors.city}</div>
+                        )}
+
+                        {formik.touched.country && formik.errors.country && (
+                            <div className="text-red-500 text-sm">{formik.errors.country}</div>
+                        )}
+
 
                     </div>
 
@@ -248,6 +275,7 @@ const BookingForm = () => {
                     <div>
                         <p className="text-sm font-medium mb-1">{t("selectPaymentMethod")}</p>
                         
+
                         <div className="flex gap-4 items-center mb-2">
                             <label className="flex items-center gap-1">
                                 <input
@@ -262,7 +290,7 @@ const BookingForm = () => {
                                 />
                                 <span>{t("sepa")}</span>
 
-                                
+
                             </label>
 
 
@@ -280,7 +308,7 @@ const BookingForm = () => {
                                 <span>{t("card")}</span>
                             </label>
 
-                            
+
                         </div>
 
                         {/* Card Payment Fields */}
@@ -295,7 +323,7 @@ const BookingForm = () => {
                                     className="w-full p-2 rounded bg-gray-100"
                                 />
 
-                                 
+
 
 
                                 <div className="grid grid-cols-2 gap-2 mt-2">
@@ -330,7 +358,7 @@ const BookingForm = () => {
                                 </div>
                             </div>
                         )}
-                        
+
 
                         {/* SEPA Payment Fields */}
                         {formik.values.paymentMethod === "SEPA" && (
@@ -402,7 +430,7 @@ const BookingForm = () => {
                             {t("termsNotice")}
                         </label>
 
-                        <button form={formId} className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded text-sm font-medium">
+                        <button form={formId} type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded text-sm font-medium">
                             {t('orderNow')}
                         </button>
                         <p className="text-center text-xs text-gray-500">{t("satisfactionRate")}</p>

@@ -64,7 +64,7 @@
       "subjectsLevels": "30+ subjects, all learning levels",
       "flexibleSchedule": "Flexible, to suit any schedule"
     },
-    "cta": "Book a trial lesson >"
+    "cta": "Book a lesson and Registration >"
   },
   "statistics": {
     "tutors": "Tutors",
@@ -148,12 +148,10 @@
       "title": "Download our app",
       "aria": "Download App",
       "button": "Download"
+    },
+    "bottom": {
+      "copyright": " © {{year}} GoStudent. All rights reserved.",
+      "socialAriaLabel": "Social media links"
     }
-    ,
-  "bottom": {
-    "copyright": " © {{year}} GoStudent. All rights reserved.",
-    "socialAriaLabel": "Social media links"
-    
-  }
   }
 }

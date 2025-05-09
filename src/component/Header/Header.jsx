@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/image/logo.svg"
 
@@ -19,7 +19,7 @@ function Header() {
 
             <div className="bg-[#faf9f7]">
                 <div className="max-w-8xl mx-auto flex justify-between items-center h-14 px-4 py-8 sm:px-6 sm:py-12 sm:gap-y-6 sm:m-auto border-b border-gray-200">
-                    {/* Logo */}
+                    
                     <div className="flex items-center space-x-2">
                         <Link to="/">
                             <img src={logo} alt="Logo" className="h-8 sm:h-10" />

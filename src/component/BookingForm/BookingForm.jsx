@@ -10,7 +10,6 @@ import Cleave from 'cleave.js/react'
 
 // Constants
 
-
 const basePrice = 29;
 const discount = 0.04;
 const advanceDiscount = 0.03;
@@ -26,6 +25,30 @@ const validationSchema = Yup.object({
     city: Yup.string().required("City is required"),
     country: Yup.string().required("Country is required"),
     paymentMethod: Yup.string().required("Payment method is required"),
+    cardHolder: Yup.string().when("paymentMethod", {
+        is: "Card",
+        then: Yup.string().required("Cardholder name is required")
+    }),
+    cardNumber: Yup.string().when("paymentMethod", {
+        is: "Card",
+        then: Yup.string().length(19, "Card number must be 19 digits").required("Card number is required")
+    }),
+    expiry: Yup.string().when("paymentMethod", {
+        is: "Card",
+        then: Yup.string().required("Expiry date is required")
+    }),
+    cvc: Yup.string().when("paymentMethod", {
+        is: "Card",
+        then: Yup.string().length(3, "CVC must be 3 digits").required("CVC is required")
+    }),
+    iban: Yup.string().when("paymentMethod", {
+        is: "SEPA",
+        then: Yup.string().required("IBAN is required")
+    }),
+    accountHolder: Yup.string().when("paymentMethod", {
+        is: "SEPA",
+        then: Yup.string().required("Account holder is required")
+    })
 });
 
 const PhoneField = ({ label, name, setFieldValue }) => (
@@ -48,7 +71,6 @@ const BookingForm = () => {
     const [payInAdvance, setPayInAdvance] = useState(false);
     const formId = "booking-form";
     const { t } = useTranslation();
-
 
     const [sessionsOptions, setSessionsOptions] = useState([]);
     const [monthsOptions, setMonthsOptions] = useState([]);
@@ -77,7 +99,6 @@ const BookingForm = () => {
         [t("36Months")]: 0.75,
     };
 
-
     // Price Calculation
     const discountedPrice = basePrice * (1 - discount);
     const finalPrice = payInAdvance ? discountedPrice * (1 - advanceDiscount) : discountedPrice;
@@ -100,6 +121,13 @@ const BookingForm = () => {
                         postalCode: "",
                         city: "",
                         country: "",
+                        paymentMethod: "",
+                        cardHolder: "",
+                        cardNumber: "",
+                        expiry: "",
+                        cvc: "",
+                        iban: "",
+                        accountHolder: "",
                     }}
                     validationSchema={validationSchema}
                     onSubmit={(values) => {
@@ -180,7 +208,6 @@ const BookingForm = () => {
                                                 <ErrorMessage name="cardHolder" component="div" className="text-red-500 text-sm" />
 
                                                 <div className="grid grid-cols-2 gap-2 mt-2">
-                                                    {/* Card Number */}
                                                     <Field name="cardNumber">
                                                         {({ field, form }) => (
                                                             <Cleave
@@ -194,7 +221,6 @@ const BookingForm = () => {
                                                     </Field>
                                                     <ErrorMessage name="cardNumber" component="div" className="text-red-500 text-sm col-span-2" />
 
-                                                    {/* Expiry */}
                                                     <Field name="expiry">
                                                         {({ field, form }) => (
                                                             <Cleave
@@ -208,7 +234,6 @@ const BookingForm = () => {
                                                     </Field>
                                                     <ErrorMessage name="expiry" component="div" className="text-red-500 text-sm" />
 
-                                                    {/* CVC */}
                                                     <Field
                                                         name="cvc"
                                                         placeholder={t("cvc")}
@@ -223,7 +248,6 @@ const BookingForm = () => {
 
                                         {field.value === "SEPA" && (
                                             <div className="mt-2">
-                                                {/* IBAN with Cleave */}
                                                 <Field name="iban">
                                                     {({ field, form }) => (
                                                         <Cleave
@@ -248,7 +272,6 @@ const BookingForm = () => {
                                     </div>
                                 )}
                             </Field>
-
                         </Form>
                     )}
                 </Formik>

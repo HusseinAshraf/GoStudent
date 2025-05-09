@@ -19,7 +19,7 @@ function Header() {
 
             <div className="bg-[#faf9f7]">
                 <div className="max-w-8xl mx-auto flex justify-between items-center h-14 px-4 py-8 sm:px-6 sm:py-12 sm:gap-y-6 sm:m-auto border-b border-gray-200">
-                    
+
                     <div className="flex items-center space-x-2">
                         <Link to="/">
                             <img src={logo} alt="Logo" className="h-8 sm:h-10" />
@@ -123,11 +123,66 @@ function Header() {
                         <Dropdown label={t("become_tutor")} items={[t("apply"), t("requirements")]} isMobile={true} />
                         <a href="#" className="block hover:text-blue-600">{t("blog")}</a>
                         <a href="#" className="block hover:text-blue-600">{t("contact")}</a>
-                        <hr />
-                        <a href="#" className="text-blue-700 hover:underline">{t("login")}</a>
-                        <button className="w-full bg-blue-700 text-white py-2 rounded hover:bg-blue-800">
+                        
+                        <div className="flex justify-between items-center">
+                            <a href="#" className="text-blue-700 hover:underline">{t("login")}</a>
+                            <div className="relative group">
+                                {/* Trigger Icon */}
+                                <button
+                                    className="flex items-center gap-2 cursor-pointer px-4 py-2 rounded-md hover:bg-gray-100 transition text-base md:text-lg"
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    title={t("change_language")}
+                                >
+                                    <svg
+                                        viewBox="0 0 36 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="w-10 h-6 md:w-12 md:h-7 stroke-blue-800"
+                                    >
+                                        <path d="M2.5 4.61279H12.8451" strokeWidth="1.25"></path>
+                                        <path d="M7.31812 3.125V4.60261" strokeWidth="1.25"></path>
+                                        <path
+                                            d="M10.5979 4.61279C9.85908 6.82981 7.64266 10.5244 3.20862 13.8497M5.05624 6.82981C5.79504 8.06136 7.79018 10.8938 9.85908 12.3721"
+                                            strokeWidth="1.25"
+                                        ></path>
+                                        <path
+                                            d="M11.0541 16.8749L11.9948 14.1228M17.3351 16.8749L16.2771 14.1228M11.9948 14.1228L14.0099 8.22607L16.2771 14.1228M11.9948 14.1228H16.2771"
+                                            strokeWidth="1.25"
+                                            strokeLinejoin="bevel"
+                                        ></path>
+                                        <path
+                                            d="M32.8 8.39995L28 13.2L23.2 8.39995"
+                                            strokeLinecap="round"
+                                        ></path>
+                                    </svg>
+                                </button>
+
+                                {/* Dropdown قائمة اللغات */}
+                                {isOpen && (
+                                    <div
+                                        className={`absolute ${i18n.language === "ar" ? "left-0" : "right-0"} mt-2 w-36 bg-white border border-gray-200 rounded-md shadow-lg z-50`}
+                                    >
+                                        <button
+                                            onClick={() => changeLanguage("en")}
+                                            className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                                        >
+                                            English
+                                        </button>
+                                        <button
+                                            onClick={() => changeLanguage("ar")}
+                                            className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
+                                        >
+                                            العربية
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        
+                        <button className="w-full bg-blue-700 text-white py-2 pt-2 rounded hover:bg-blue-800">
                             {t("get_started")}
                         </button>
+
                     </nav>
                 </div>
             )}

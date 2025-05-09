@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next'; // استيراد useTranslation
 
 const TrustpilotWidget = () => {
+  const { t } = useTranslation(); // استخدام الترجمة
+
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
@@ -21,7 +24,7 @@ const TrustpilotWidget = () => {
               <div className="w-full">
                 <div className="flex flex-col gap-y-2 items-center">
                   <h2 className="font-bold text-xl sm:text-2xl lg:text-[28px] lg:leading-[40px] text-center text-[rgb(9,38,138)]">
-                    We’re always aiming for good grades
+                    {t('we_are_aiming_for_good_grades')}
                   </h2>
                 </div>
               </div>
@@ -52,7 +55,7 @@ const TrustpilotWidget = () => {
                   >
                     <div className="flex gap-x-2 justify-center items-center w-full">
                       <div className="break-words whitespace-pre-wrap text-center max-w-full">
-                        See what parents say about GoStudent
+                        {t('see_what_parents_say_about_gostudent')}
                       </div>
                       <svg
                         className="stroke-[rgb(11,47,172)] fill-[rgb(11,47,172)] group-hover:stroke-blue-800 group-hover:fill-[rgb(11,47,172)]"

@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const BenefitSection = () => {
+    const { t } = useTranslation();
+
     return (
         <section className="bg-GSbase/white" id="benefit-section">
             <div className="overflow-x-clip w-full 2xl:px-10">
@@ -10,10 +13,10 @@ const BenefitSection = () => {
                             <div className="w-full">
                                 <div className="flex flex-col gap-y-2 items-center">
                                     <h2 className="font-raleway font-bold text-xl sm:text-2xl lg:text-[28px] lg:leading-[40px] text-center text-[rgb(9,38,138)]">
-                                        Top-quality tutors for every learning style
+                                        {t('benefitSection.title')}
                                     </h2>
                                     <div className="font-worksans text-[rgb(1,9,17)] font-normal text-center lg:text-lg text-sm sm:text-base">
-                                        Find the ideal tutor based on your child’s level and learning goals
+                                        {t('benefitSection.subtitle')}
                                     </div>
                                 </div>
                             </div>
@@ -37,15 +40,15 @@ const BenefitSection = () => {
                                 <div className="flex self-center col-span-6 sm:col-span-6 lg:col-span-5 col-start-1 sm:col-start-7 lg:col-start-6">
                                     <div className="rounded-lg gap-2 flex flex-col justify-center bg-none text-left">
                                         <h3 className="text-[rgb(9,38,138)] font-raleway font-bold text-lg sm:text-xl lg:text-2xl">
-                                            One-to-one lessons in all subjects
+                                            {t('benefitSection.block1Title')}
                                         </h3>
                                         <div className="flex flex-col gap-4 sm:gap-6 lg:gap-10">
                                             <div className="flex flex-col gap-2">
                                                 <div className="text-[rgb(1,9,17)] font-normal text-sm lg:text-base whitespace-pre-wrap">
-                                                    Every student learns differently - personalised tutoring in our interactive, virtual classroom can close any learning gap.
+                                                    {t('benefitSection.block1Description1')}
                                                     <br />
                                                     <br />
-                                                    Receive 50-minutes of undivided support from a tutor who tailors the lesson to suit a student’s learning style.
+                                                    {t('benefitSection.block1Description2')}
                                                 </div>
                                             </div>
                                         </div>
@@ -77,15 +80,15 @@ const BenefitSection = () => {
                                 <div className="flex self-center col-span-6 sm:col-span-6 lg:col-span-5 col-start-1">
                                     <div className="rounded-lg gap-2 flex flex-col justify-center bg-none text-left  sm:text-left py-4 sm:py-6 lg:py-10 px-4 sm:px-6 lg:px-10 !pt-0 sm:!pt-8 sm:pl-8">
                                         <h3 className="text-[rgb(9,38,138)] font-raleway font-bold text-lg sm:text-xl lg:text-2xl">
-                                            Achieve any learning goal
+                                            {t('benefitSection.block2Title')}
                                         </h3>
                                         <div className="flex flex-col gap-4 sm:gap-6 lg:gap-10">
                                             <div className="flex flex-col gap-2">
                                                 <div className="text-[rgb(1,9,17)] font-normal text-sm lg:text-base whitespace-pre-wrap">
-                                                    Students experience remarkable progress with our personalised tutoring
+                                                    {t('benefitSection.block2Description1')}
                                                     <br />
                                                     <br />
-                                                    3 in 4 improve by up to 3 grades, and 90% report more confidence in the classroom.
+                                                    {t('benefitSection.block2Description2')}
                                                 </div>
                                             </div>
                                         </div>
@@ -102,12 +105,12 @@ const BenefitSection = () => {
 
                                         <div className="rounded-lg gap-4 flex flex-col bg-[rgb(236,230,255)] text-center py-4 sm:py-6 lg:py-10 px-4 sm:px-6 lg:px-10">
                                             <h3 className="text-[rgb(9,38,138)] font-raleway font-bold text-lg sm:text-xl lg:text-2xl">
-                                                Only the best background-checked tutors
+                                                {t('benefitSection.block3Title1')}
                                             </h3>
                                             <div className="flex flex-col gap-4 sm:gap-6 lg:gap-10">
                                                 <div className="flex flex-col gap-2">
                                                     <div className="text-[rgb(1,9,17)] font-normal text-sm lg:text-base whitespace-pre-wrap">
-                                                        Only 8% of tutor applicants make it through our 5-step selection process. Love your lessons - or you can switch to another tutor for free.
+                                                        {t('benefitSection.block3Description1')}
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,12 +118,12 @@ const BenefitSection = () => {
 
                                         <div className="rounded-lg gap-4 flex flex-col bg-[rgb(236,230,255)] text-center py-4 sm:py-6 lg:py-10 px-4 sm:px-6 lg:px-10">
                                             <h3 className="text-[rgb(9,38,138)] font-raleway font-bold text-lg sm:text-xl lg:text-2xl">
-                                                Get tutoring for all ages and levels
+                                                {t('benefitSection.block3Title2')}
                                             </h3>
                                             <div className="flex flex-col gap-4 sm:gap-6 lg:gap-10">
                                                 <div className="flex flex-col gap-2">
                                                     <div className="text-[rgb(1,9,17)] font-normal text-sm lg:text-base whitespace-pre-wrap">
-                                                        Tutors are familiar with local schooling systems for more than 30 subjects, helping guide students from first to final year.
+                                                        {t('benefitSection.block3Description2')}
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +146,7 @@ const BenefitSection = () => {
                                 >
                                     <div className="flex gap-x-2 justify-center items-center w-full">
                                         <div className="break-words whitespace-pre-wrap text-center max-w-full">
-                                            See how it works
+                                            {t('benefitSection.seeHowItWorks')}
                                         </div>
                                     </div>
                                 </a>

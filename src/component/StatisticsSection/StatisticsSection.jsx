@@ -1,13 +1,16 @@
 import React from 'react';
-
-const statistics = [
-    { value: '23k+', label: 'Tutors' },
-    { value: '30+', label: 'Subjects' },
-    { value: '96 %', label: '4 & 5-star reviews' },
-    { value: '93 %', label: 'Successfully improve' },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function StatisticsSection() {
+    const { t } = useTranslation();
+
+    const statistics = [
+        { value: '23k+', label: t('statistics.tutors') },
+        { value: '30+', label: t('statistics.subjects') },
+        { value: '96 %', label: t('statistics.reviews') },
+        { value: '93 %', label: t('statistics.improvement') },
+    ];
+
     return (
         <section className="bg-white" id="statistics-section">
             <div className="overflow-x-clip w-full 2xl:px-10">

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const FeaturesSection = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="w-full bg-[rgb(244,246,251)]" id="features-section">
       <div className="overflow-x-clip w-full 2xl:px-10">
@@ -10,10 +13,10 @@ const FeaturesSection = () => {
               <div className="w-full">
                 <div className="flex flex-col gap-y-2 items-center">
                   <h2 className="font-raleway font-bold text-xl sm:text-2xl lg:text-[28px] lg:leading-[40px] text-center text-[rgb(9,38,138)]">
-                    Getting started is as easy as 1-2-3
+                    {t('getting_started')}
                   </h2>
                   <div className="font-worksans text-[rgb(1,9,17)] font-normal text-center lg:text-lg text-sm sm:text-base">
-                    Award-winning tutoring with these 3 easy steps
+                    {t('award_winning_tutoring')}
                   </div>
                 </div>
               </div>
@@ -27,14 +30,10 @@ const FeaturesSection = () => {
                     </div>
                     <div className="flex flex-col w-full gap-2">
                       <h3 className="font-raleway text-[rgb(9,38,138)] font-bold text-lg sm:text-xl lg:text-2xl">
-                        {step === 1 ? 'Book a trial' : step === 2 ? 'Try for free' : 'Start learning'}
+                        {t(`step_${step}_title`)}
                       </h3>
                       <div className="font-normal text-[rgb(1,9,17)] text-sm whitespace-pre-wrap sm:text-base lg:text-base">
-                        {step === 1
-                          ? 'Share your learning needs to match with the ideal tutor, based on personality, learning level and goals.'
-                          : step === 2
-                          ? 'Join a free, non-binding trial lesson to try out tutoring. No card or commitment required.'
-                          : 'Book a customised lesson package to get started with a personalised plan to improve grades and confidence.'}
+                        {t(`step_${step}_description`)}
                       </div>
                     </div>
                   </div>
@@ -51,7 +50,7 @@ const FeaturesSection = () => {
                 >
                   <div className="flex gap-x-2 justify-center items-center w-full">
                     <div className="break-words whitespace-pre-wrap  text-center max-w-full">
-                      Get started
+                      {t('get_started')}
                     </div>
                     <svg
                       className="stroke-[rgb(11,47,172)] fill-[rgb(11,47,172)] group-hover:stroke-[rgb(11,46,172)] group-hover:fill-[rgb(11,47,172)]"

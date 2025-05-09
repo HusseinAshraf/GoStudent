@@ -55,5 +55,104 @@
   "12Months": "12 MONTHS",
   "18Months": "18 MONTHS",
   "24Months": "24 MONTHS",
-  "36Months": "36 MONTHS"
+  "36Months": "36 MONTHS",
+  "hero": {
+    "title": "Personalised tutoring with a 95% success rate",
+    "features": {
+      "tailoredLessons": "Tailored private lessons",
+      "betterGrades": "For better grades and more confidence",
+      "subjectsLevels": "30+ subjects, all learning levels",
+      "flexibleSchedule": "Flexible, to suit any schedule"
+    },
+    "cta": "Book a trial lesson >"
+  },
+  "statistics": {
+    "tutors": "Tutors",
+    "subjects": "Subjects",
+    "reviews": "4 & 5-star reviews",
+    "improvement": "Successfully improve"
+  },
+  "benefitSection": {
+    "title": "Top-quality tutors for every learning style",
+    "subtitle": "Find the ideal tutor based on your child’s level and learning goals",
+    "block1Title": "One-to-one lessons in all subjects",
+    "block1Description1": "Every student learns differently - personalised tutoring in our interactive, virtual classroom can close any learning gap.",
+    "block1Description2": "Receive 50-minutes of undivided support from a tutor who tailors the lesson to suit a student’s learning style.",
+    "block2Title": "Achieve any learning goal",
+    "block2Description1": "Students experience remarkable progress with our personalised tutoring",
+    "block2Description2": "3 in 4 improve by up to 3 grades, and 90% report more confidence in the classroom.",
+    "block3Title1": "Only the best background-checked tutors",
+    "block3Description1": "Only 8% of tutor applicants make it through our 5-step selection process. Love your lessons - or you can switch to another tutor for free.",
+    "block3Title2": "Get tutoring for all ages and levels",
+    "block3Description2": "Tutors are familiar with local schooling systems for more than 30 subjects, helping guide students from first to final year.",
+    "seeHowItWorks": "See how it works"
+  },
+  "mostPopularSubjects": "Most popular subjects",
+  "description": "From maths to science and more - get tutoring support in 30+ subjects",
+  "seeAllSubjects": "See all subjects",
+  "subjects": {
+    "maths": "Maths",
+    "german": "German",
+    "physics": "Physics",
+    "english": "English",
+    "chemistry": "Chemistry",
+    "gcse": "GCSE",
+    "french": "French",
+    "latin": "Latin",
+    "biology": "Biology",
+    "spanish": "Spanish",
+    "italian": "Italian",
+    "geography": "Geography",
+    "economics": "Economics",
+    "history": "History"
+  },
+  "getting_started": "Getting started is as easy as 1-2-3",
+  "award_winning_tutoring": "Award-winning tutoring with these 3 easy steps",
+  "step_1_title": "Book a trial",
+  "step_1_description": "Share your learning needs to match with the ideal tutor, based on personality, learning level and goals.",
+  "step_2_title": "Try for free",
+  "step_2_description": "Join a free, non-binding trial lesson to try out tutoring. No card or commitment required.",
+  "step_3_title": "Start learning",
+  "step_3_description": "Book a customised lesson package to get started with a personalised plan to improve grades and confidence.",
+  "we_are_aiming_for_good_grades": "We’re always aiming for good grades",
+  "see_what_parents_say_about_gostudent": "See what parents say about GoStudent",
+  "footer": {
+    "about": {
+      "title": "About GoStudent",
+      "whoWeAre": "Who we are",
+      "careers": "Careers",
+      "corporate": "Corporate partnership",
+      "schools": "School partnership",
+      "affiliate": "Affiliate programme",
+      "newsroom": "Newsroom",
+      "safeguarding": "Safeguarding policy"
+    },
+    "parents": {
+      "title": "For parents",
+      "subjects": "Subjects",
+      "prices": "Prices",
+      "benefits": "Benefits of tutoring",
+      "reviews": "Reviews"
+    },
+    "tutors": {
+      "title": "For tutors",
+      "apply": "Apply as a tutor",
+      "benefits": "Benefits of tutoring"
+    },
+    "support": {
+      "title": "Customer service",
+      "help": "Help Centre",
+      "contact": "Contact"
+    },
+    "download": {
+      "title": "Download our app",
+      "aria": "Download App",
+      "button": "Download"
+    }
+    ,
+  "bottom": {
+    "copyright": "© {{year}} GoStudent. جميع الحقوق محفوظة.",
+    "socialAriaLabel": "روابط وسائل التواصل الاجتماعي"
+  }
+  }
 }

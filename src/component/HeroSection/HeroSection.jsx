@@ -1,31 +1,37 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+    const { t } = useTranslation();
+
+    const features = [
+        t("hero.features.tailoredLessons"),
+        t("hero.features.betterGrades"),
+        t("hero.features.subjectsLevels"),
+        t("hero.features.flexibleSchedule"),
+    ];
+
+    const badgeImages = [
+        "https://assets.gostudent.org/f/192322/580x502/a87e455cad/preis-leistungs.png/m/",
+        "https://assets.gostudent.org/f/192322/304x512/4794124141/preis-leistung-2024.jpg/m/",
+        "https://assets.gostudent.org/f/192322/1092x518/aad8cd13a6/screenshot-2024-08-22-at-16-13-06.png/m/1024x0",
+    ];
+
     return (
         <section className="w-full bg-[rgb(11,47,172)] text-white" id="hero-section">
             <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-8">
-
-                {/* Content Section - Left on large screens */}
+                {/* Content Section */}
                 <div className="flex flex-col justify-center px-4 py-8 sm:px-6 lg:col-span-6 lg:px-10 lg:py-16 max-w-full lg:max-w-[752px] self-center order-2 lg:order-1">
                     <div className="flex flex-col gap-6 lg:gap-10">
                         <h1 className="font-raleway font-extrabold text-2xl sm:text-3xl lg:text-4xl 2xl:text-5xl leading-snug text-white">
-                            Personalised tutoring with a 95% success rate
+                            {t("hero.title")}
                         </h1>
 
-                        {/* Feature List */}
                         <div className="flex flex-col gap-4">
-                            {[
-                                "Tailored private lessons",
-                                "For better grades and more confidence",
-                                "30+ subjects, all learning levels",
-                                "Flexible, to suit any schedule",
-                            ].map((text, idx) => (
+                            {features.map((text, idx) => (
                                 <div key={idx} className="flex items-start gap-3">
-                                    <svg
-                                        className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 fill-GSpurple/500 mt-1"
-                                        viewBox="0 0 24 24"
-                                    >
+                                    <svg className="w-5 h-5 sm:w-6 sm:h-6 shrink-0 fill-GSpurple/500 mt-1" viewBox="0 0 24 24">
                                         <path
                                             fillRule="evenodd"
                                             clipRule="evenodd"
@@ -38,30 +44,24 @@ const HeroSection = () => {
                             ))}
                         </div>
 
-                        {/* CTA Button */}
                         <div className="w-full max-w-xs">
                             <Link
                                 to="/booking"
                                 className="block text-center w-full px-6 py-3 sm:text-base text-sm lg:text-lg rounded ring-2 ring-[rgb(125,125,225)] text-[rgb(11,47,172)] bg-white hover:bg-GSblue/50 hover:ring-GSblue/300"
                             >
-                                Book a trial lesson &gt;
+                                {t("hero.cta")}
                             </Link>
                         </div>
 
-                        {/* Badges */}
                         <div className="flex justify-center flex-wrap gap-3 sm:gap-4">
-                            {[
-                                "https://assets.gostudent.org/f/192322/580x502/a87e455cad/preis-leistungs.png/m/",
-                                "https://assets.gostudent.org/f/192322/304x512/4794124141/preis-leistung-2024.jpg/m/",
-                                "https://assets.gostudent.org/f/192322/1092x518/aad8cd13a6/screenshot-2024-08-22-at-16-13-06.png/m/1024x0",
-                            ].map((src, i) => (
+                            {badgeImages.map((src, i) => (
                                 <img key={i} src={src} alt={`badge-${i}`} className="h-20 sm:h-24 max-h-32" />
                             ))}
                         </div>
                     </div>
                 </div>
 
-                {/* Image Section - Right on large screens */}
+                {/* Image Section */}
                 <div className="relative w-full h-72 sm:h-96 lg:h-auto lg:col-span-6 order-1 lg:order-2">
                     <img
                         loading="eager"
@@ -72,8 +72,6 @@ const HeroSection = () => {
                 </div>
             </div>
         </section>
-
-
     );
 };
 

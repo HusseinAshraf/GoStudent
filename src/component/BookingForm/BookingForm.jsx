@@ -274,7 +274,7 @@ const BookingForm = () => {
 
                     <div>
                         <p className="text-sm font-medium mb-1">{t("selectPaymentMethod")}</p>
-                        
+
 
                         <div className="flex gap-4 items-center mb-2">
                             <label className="flex items-center gap-1">

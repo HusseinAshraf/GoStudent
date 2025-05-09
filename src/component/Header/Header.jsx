@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
-
+import logo from "/src/assets/image/logo.svg"
 
 function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -16,13 +16,13 @@ function Header() {
 
     return (
         <header className="border-b border-gray-200">
-            
+
             <div className="bg-[#faf9f7]">
                 <div className="max-w-8xl mx-auto flex justify-between items-center h-14 px-4 py-8 sm:px-6 sm:py-12 sm:gap-y-6 sm:m-auto border-b border-gray-200">
                     {/* Logo */}
                     <div className="flex items-center space-x-2">
                         <Link to="/">
-                            <img src="/src/assets/image/logo.svg" alt="Logo" className="h-8 sm:h-10" />
+                            <img src={logo} alt="Logo" className="h-8 sm:h-10" />
                         </Link>
                     </div>
 
@@ -94,7 +94,7 @@ function Header() {
                 </div>
             </div>
 
-            
+
             <nav className="bg-white hidden md:flex justify-center space-x-24 text-xl text-gray-800 h-12 items-center py-8 px-4">
                 <Dropdown label={t("how_it_works")} items={[t("overview"), t("features"), t("faq")]} />
                 <a href="#" className="hover:text-blue-600">{t("prices")}</a>
@@ -104,12 +104,12 @@ function Header() {
                 <a href="#" className="hover:text-blue-600">{t("contact")}</a>
             </nav>
 
-            
+
             {mobileOpen && (
                 <div className="fixed inset-0 z-50 bg-white p-4">
                     <div className="flex justify-between items-center mb-4">
                         <div className="flex items-center space-x-2">
-                            <img src="/src/assets/image/logo.svg" alt="GoStudent" className="h-6" />
+                            <img src={logo} alt="GoStudent" className="h-6" />
                         </div>
                         <button onClick={() => setMobileOpen(false)}>
                             <X size={24} />

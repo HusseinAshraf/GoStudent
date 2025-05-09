@@ -153,5 +153,26 @@
       "copyright": " © {{year}} GoStudent. All rights reserved.",
       "socialAriaLabel": "Social media links"
     }
+  },
+  "validation": {
+    "loginPhone": "Login phone is required",
+    "contactPhone": "Contact phone is required",
+    "email": "Invalid email",
+    "emailRequired": "Email is required",
+    "name": "Contact name is required",
+    "address": "Address is required",
+    "nr": "Nr is required",
+    "postalCode": "Postal Code is required",
+    "city": "City is required",
+    "country": "Country is required",
+    "paymentMethod": "Payment method is required",
+    "cardHolder": "Cardholder name is required",
+    "cardNumber": "Card number is required",
+    "cardNumberLength": "Card number must be 19 digits",
+    "expiry": "Expiry date is required",
+    "cvc": "CVC is required",
+    "cvcLength": "CVC must be 3 digits",
+    "iban": "IBAN is required",
+    "accountHolder": "Account holder is required"
   }
 }

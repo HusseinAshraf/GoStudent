@@ -14,55 +14,56 @@ const basePrice = 29;
 const discount = 0.04;
 const advanceDiscount = 0.03;
 
+
+
 const validationSchema = Yup.object({
-    loginPhone: Yup.string().required("Login phone is required"),
-    contactPhone: Yup.string().required("Contact phone is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    name: Yup.string().required("Contact name is required"),
-    address: Yup.string().required("Address is required"),
-    nr: Yup.string().required("Nr is required"),
-    postalCode: Yup.string().required("Postal Code is required"),
-    city: Yup.string().required("City is required"),
-    country: Yup.string().required("Country is required"),
-    paymentMethod: Yup.string().required("Payment method is required"),
+    loginPhone: Yup.string().required(t("validation.loginPhone")),
+    contactPhone: Yup.string().required(t("validation.contactPhone")),
+    email: Yup.string().email(t("validation.email")).required(t("validation.emailRequired")),
+    name: Yup.string().required(t("validation.name")),
+    address: Yup.string().required(t("validation.address")),
+    nr: Yup.string().required(t("validation.nr")),
+    postalCode: Yup.string().required(t("validation.postalCode")),
+    city: Yup.string().required(t("validation.city")),
+    country: Yup.string().required(t("validation.country")),
+    paymentMethod: Yup.string().required(t("validation.paymentMethod")),
 
     // Card fields validation
     cardHolder: Yup.string().when("paymentMethod", {
         is: "Card",
-        then: Yup.string().required("Cardholder name is required")
+        then: Yup.string().required(t("validation.cardHolder"))
     }),
 
     cardNumber: Yup.string().when("paymentMethod", {
         is: "Card",
         then: Yup.string()
-            .length(19, "Card number must be 19 digits")
-            .required("Card number is required")
+            .length(19, t("validation.cardNumberLength"))
+            .required(t("validation.cardNumber"))
     }),
 
     expiry: Yup.string().when("paymentMethod", {
         is: "Card",
-        then: Yup.string().required("Expiry date is required")
+        then: Yup.string().required(t("validation.expiry"))
     }),
 
     cvc: Yup.string().when("paymentMethod", {
         is: "Card",
         then: Yup.string()
-            .length(3, "CVC must be 3 digits")
-            .required("CVC is required")
+            .length(3, t("validation.cvcLength"))
+            .required(t("validation.cvc"))
     }),
 
     // SEPA fields validation
     iban: Yup.string().when("paymentMethod", {
         is: "SEPA",
-        then: Yup.string().required("IBAN is required")
+        then: Yup.string().required(t("validation.iban"))
     }),
 
     accountHolder: Yup.string().when("paymentMethod", {
         is: "SEPA",
-        then: Yup.string().required("Account holder is required")
+        then: Yup.string().required(t("validation.accountHolder"))
     })
 });
-
 
 const PhoneField = ({ label, name, setFieldValue }) => (
     <div>

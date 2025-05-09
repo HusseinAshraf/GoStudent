@@ -11,7 +11,7 @@ export default function Footer() {
                     {/* Main Links */}
                     <div className="w-full sm:grid sm:grid-cols-12 lg:col-span-10 gap-x-8 gap-y-10">
 
-                        {/* About GoStudent */}
+                        
                         <div className="sm:col-span-4 lg:col-span-2 gap-3 lg:col-start-2">
                             <div className="hidden sm:block w-full sm:mb-8 lg:mb-0 break-words">
                                 <div className="font-bold text-lg mb-5">{t('footer.about.title')}</div>

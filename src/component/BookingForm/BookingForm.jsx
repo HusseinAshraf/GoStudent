@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
 import i18n from "../../i18n";
+import Cleave from 'cleave.js/react'
 
 // Constants
 
@@ -46,12 +47,12 @@ const BookingForm = () => {
     const [selectedMonths, setSelectedMonths] = useState("6 MONTHS");
     const [payInAdvance, setPayInAdvance] = useState(false);
     const formId = "booking-form";
-    const { t } = useTranslation(); // استخدام الترجمة
+    const { t } = useTranslation();
 
-    // تحديث الخيارات عند تغيير اللغة
+
     const [sessionsOptions, setSessionsOptions] = useState([]);
     const [monthsOptions, setMonthsOptions] = useState([]);
-    
+
     useEffect(() => {
         setSessionsOptions([
             { label: t("sessionsOption8"), value: 8 },
@@ -179,13 +180,42 @@ const BookingForm = () => {
                                                 <ErrorMessage name="cardHolder" component="div" className="text-red-500 text-sm" />
 
                                                 <div className="grid grid-cols-2 gap-2 mt-2">
-                                                    <Field name="cardNumber" placeholder={t("cardNumber")} className="col-span-2 p-2 rounded bg-gray-100" />
+                                                    {/* Card Number */}
+                                                    <Field name="cardNumber">
+                                                        {({ field, form }) => (
+                                                            <Cleave
+                                                                {...field}
+                                                                options={{ creditCard: true }}
+                                                                className="col-span-2 p-2 rounded bg-gray-100 w-full"
+                                                                placeholder={t("cardNumber")}
+                                                                onChange={(e) => form.setFieldValue("cardNumber", e.target.value)}
+                                                            />
+                                                        )}
+                                                    </Field>
                                                     <ErrorMessage name="cardNumber" component="div" className="text-red-500 text-sm col-span-2" />
 
-                                                    <Field name="expiry" placeholder={t("expiry")} className="p-2 rounded bg-gray-100" />
+                                                    {/* Expiry */}
+                                                    <Field name="expiry">
+                                                        {({ field, form }) => (
+                                                            <Cleave
+                                                                {...field}
+                                                                options={{ date: true, datePattern: ['m', 'y'] }}
+                                                                className="p-2 rounded bg-gray-100 w-full"
+                                                                placeholder="MM/YY"
+                                                                onChange={(e) => form.setFieldValue("expiry", e.target.value)}
+                                                            />
+                                                        )}
+                                                    </Field>
                                                     <ErrorMessage name="expiry" component="div" className="text-red-500 text-sm" />
 
-                                                    <Field name="cvc" placeholder={t("cvc")} className="p-2 rounded bg-gray-100" />
+                                                    {/* CVC */}
+                                                    <Field
+                                                        name="cvc"
+                                                        placeholder={t("cvc")}
+                                                        className="p-2 rounded bg-gray-100"
+                                                        maxLength="4"
+                                                        pattern="\d{3,4}"
+                                                    />
                                                     <ErrorMessage name="cvc" component="div" className="text-red-500 text-sm" />
                                                 </div>
                                             </div>
@@ -193,7 +223,22 @@ const BookingForm = () => {
 
                                         {field.value === "SEPA" && (
                                             <div className="mt-2">
-                                                <Field name="iban" placeholder={t("iban")} className="w-full p-2 rounded bg-gray-100" />
+                                                {/* IBAN with Cleave */}
+                                                <Field name="iban">
+                                                    {({ field, form }) => (
+                                                        <Cleave
+                                                            {...field}
+                                                            options={{
+                                                                blocks: [4, 4, 4, 4, 4, 4, 4, 4, 2],
+                                                                uppercase: true,
+                                                                delimiter: ' ',
+                                                            }}
+                                                            className="w-full p-2 rounded bg-gray-100"
+                                                            placeholder="DE89 3704 0044 0532 0130 00"
+                                                            onChange={(e) => form.setFieldValue("iban", e.target.value)}
+                                                        />
+                                                    )}
+                                                </Field>
                                                 <ErrorMessage name="iban" component="div" className="text-red-500 text-sm" />
 
                                                 <Field name="accountHolder" placeholder={t("accountHolder")} className="w-full p-2 rounded bg-gray-100 mt-2" />
@@ -203,6 +248,7 @@ const BookingForm = () => {
                                     </div>
                                 )}
                             </Field>
+
                         </Form>
                     )}
                 </Formik>

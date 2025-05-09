@@ -151,8 +151,9 @@
     }
     ,
   "bottom": {
-    "copyright": "© {{year}} GoStudent. جميع الحقوق محفوظة.",
-    "socialAriaLabel": "روابط وسائل التواصل الاجتماعي"
+    "copyright": " © {{year}} GoStudent. All rights reserved.",
+    "socialAriaLabel": "Social media links"
+    
   }
   }
 }

@@ -3,7 +3,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
-// Header Component
+
 function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);
     const { t, i18n } = useTranslation();
@@ -16,7 +16,7 @@ function Header() {
 
     return (
         <header className="border-b border-gray-200">
-            {/* Top Bar */}
+            
             <div className="bg-[#faf9f7]">
                 <div className="max-w-8xl mx-auto flex justify-between items-center h-14 px-4 py-8 sm:px-6 sm:py-12 sm:gap-y-6 sm:m-auto border-b border-gray-200">
                     {/* Logo */}
@@ -61,9 +61,7 @@ function Header() {
                                         strokeLinecap="round"
                                     ></path>
                                 </svg>
-
                             </button>
-
 
                             {/* Dropdown قائمة اللغات */}
                             {isOpen && (
@@ -85,7 +83,6 @@ function Header() {
                                 </div>
                             )}
                         </div>
-
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -97,7 +94,7 @@ function Header() {
                 </div>
             </div>
 
-            {/* Bottom Navigation */}
+            
             <nav className="bg-white hidden md:flex justify-center space-x-24 text-xl text-gray-800 h-12 items-center py-8 px-4">
                 <Dropdown label={t("how_it_works")} items={[t("overview"), t("features"), t("faq")]} />
                 <a href="#" className="hover:text-blue-600">{t("prices")}</a>
@@ -107,13 +104,12 @@ function Header() {
                 <a href="#" className="hover:text-blue-600">{t("contact")}</a>
             </nav>
 
-            {/* Mobile Menu */}
+            
             {mobileOpen && (
                 <div className="fixed inset-0 z-50 bg-white p-4">
                     <div className="flex justify-between items-center mb-4">
                         <div className="flex items-center space-x-2">
-                            <img src="/logo.svg" alt="GoStudent" className="h-6" />
-                            <span className="text-blue-800 font-semibold text-lg">GoStudent</span>
+                            <img src="/src/assets/image/logo.svg" alt="GoStudent" className="h-6" />
                         </div>
                         <button onClick={() => setMobileOpen(false)}>
                             <X size={24} />
@@ -121,10 +117,10 @@ function Header() {
                     </div>
 
                     <nav className="space-y-4 text-sm text-gray-800">
-                        <a href="#" className="block hover:text-blue-600">{t("how_it_works")}</a>
+                        <Dropdown label={t("how_it_works")} items={[t("overview"), t("features"), t("faq")]} isMobile={true} />
                         <a href="#" className="block hover:text-blue-600">{t("prices")}</a>
-                        <a href="#" className="block hover:text-blue-600">{t("online_tutoring")}</a>
-                        <a href="#" className="block hover:text-blue-600">{t("become_tutor")}</a>
+                        <Dropdown label={t("online_tutoring")} items={[t("math"), t("science"), t("english")]} isMobile={true} />
+                        <Dropdown label={t("become_tutor")} items={[t("apply"), t("requirements")]} isMobile={true} />
                         <a href="#" className="block hover:text-blue-600">{t("blog")}</a>
                         <a href="#" className="block hover:text-blue-600">{t("contact")}</a>
                         <hr />
@@ -139,16 +135,31 @@ function Header() {
     );
 }
 
-// Dropdown Component
+
 function Dropdown({ label, items }) {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <div className="relative group">
-            <div className="flex items-center space-x-1 cursor-pointer text-gray-800 group-hover:text-blue-800">
+
+            <div
+                className="flex items-center space-x-1 cursor-pointer text-gray-800 group-hover:text-blue-800"
+                onClick={toggleDropdown}
+            >
                 <span>{label}</span>
                 <ChevronDown size={16} />
             </div>
 
-            <div className="absolute left-1/2 transform -translate-x-1/2 mt-4 w-72 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+
+            <div
+                className={`absolute left-1/2 transform -translate-x-1/2 mt-4 w-72 bg-white border border-gray-200 rounded-md shadow-lg 
+                    ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} 
+                    group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50`}
+            >
                 <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200 z-10"></div>
                 <div className="py-2">
                     {items.map((item, index) => (

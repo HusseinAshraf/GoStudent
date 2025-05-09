@@ -14,10 +14,12 @@
     "postinstall": "flowbite-react patch"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^3.7.0",
     "@stripe/stripe-js": "^7.3.0",
     "@tailwindcss/vite": "^4.1.5",
     "axios": "^1.9.0",
     "classnames": "^2.5.1",
+    "cleave.js": "^1.6.0",
     "flowbite-react": "^0.11.7",
     "formik": "^2.4.6",
     "i18next": "^25.1.2",

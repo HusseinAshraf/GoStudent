@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
-import logo from "/public/logo.svg"
+import logo from "../../assets/image/logo.svg"
 
 function Header() {
     const [mobileOpen, setMobileOpen] = useState(false);

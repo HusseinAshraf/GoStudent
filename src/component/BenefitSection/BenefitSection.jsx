@@ -5,7 +5,7 @@ const BenefitSection = () => {
     const { t } = useTranslation();
 
     return (
-        <section className="bg-GSbase/white" id="benefit-section">
+        <section className="bg-white" id="benefit-section">
             <div className="overflow-x-clip w-full 2xl:px-10">
                 <div className="flex flex-col w-full items-center px-4 py-8 gap-y-4 sm:px-6 sm:py-12 sm:gap-y-6 sm:m-auto lg:px-10 lg:py-16 lg:gap-x-8 lg:gap-y-10 2xl:max-w-[1536px] 2xl:w-full">
                     <div className="w-full">

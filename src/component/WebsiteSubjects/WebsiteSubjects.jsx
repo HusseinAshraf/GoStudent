@@ -76,7 +76,7 @@ const WebsiteSubjects = () => {
                                 type="button"
                                 onClick={toggleSubjects}
                             >
-                                {t('seeAllSubjects')}  {/* ترجمة زر */}
+                                {t('seeAllSubjects')}  
                                 <svg
                                     className={`stroke-GSblue/600 transition-transform duration-300 ${showSubjects ? 'rotate-180' : ''}`}
                                     xmlns="http://www.w3.org/2000/svg"

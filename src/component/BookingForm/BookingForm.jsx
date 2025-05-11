@@ -8,7 +8,7 @@ import { t } from "i18next";
 import i18n from "../../i18n";
 import Cleave from 'cleave.js/react'
 
-// Constants
+
 
 const basePrice = 29;
 const discount = 0.04;
@@ -29,55 +29,54 @@ const validationSchema = Yup.object({
     paymentMethod: Yup.string().required(t("validation.paymentMethod")),
 
     // Card fields validation
-    cardHolder: Yup.string().when("paymentMethod", {
-        is: "Card",
-        then: Yup.string().required(t("validation.cardHolder"))
-    }),
+    cardHolder: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+        paymentMethod === "Card" ? schema.required(t("validation.cardHolder")) : schema
+    ),
 
-    cardNumber: Yup.string().when("paymentMethod", {
-        is: "Card",
-        then: Yup.string()
-            .length(19, t("validation.cardNumberLength"))
-            .required(t("validation.cardNumber"))
-    }),
+    cardNumber: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+        paymentMethod === "Card"
+            ? schema
+                .length(19, t("validation.cardNumberLength"))
+                .required(t("validation.cardNumber"))
+            : schema
+    ),
 
-    expiry: Yup.string().when("paymentMethod", {
-        is: "Card",
-        then: Yup.string().required(t("validation.expiry"))
-    }),
+    expiry: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+        paymentMethod === "Card" ? schema.required(t("validation.expiry")) : schema
+    ),
 
-    cvc: Yup.string().when("paymentMethod", {
-        is: "Card",
-        then: Yup.string()
-            .length(3, t("validation.cvcLength"))
-            .required(t("validation.cvc"))
-    }),
+    cvc: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+        paymentMethod === "Card"
+            ? schema.length(3, t("validation.cvcLength")).required(t("validation.cvc"))
+            : schema
+    ),
 
     // SEPA fields validation
-    iban: Yup.string().when("paymentMethod", {
-        is: "SEPA",
-        then: Yup.string().required(t("validation.iban"))
-    }),
+    iban: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+        paymentMethod === "SEPA" ? schema.required(t("validation.iban")) : schema
+    ),
 
-    accountHolder: Yup.string().when("paymentMethod", {
-        is: "SEPA",
-        then: Yup.string().required(t("validation.accountHolder"))
-    })
+    accountHolder: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+        paymentMethod === "SEPA" ? schema.required(t("validation.accountHolder")) : schema
+    )
 });
 
-const PhoneField = ({ label, name, setFieldValue }) => (
+
+const PhoneField = ({ label, name, setFieldValue, value, onBlur }) => (
     <div>
         <label className="block text-sm font-medium mb-1">{label}</label>
         <PhoneInput
             country={"us"}
+            value={value}
             onChange={(value) => setFieldValue(name, value)}
+            onBlur={onBlur}
             inputStyle={{ width: "100%", backgroundColor: "#f3f4f6", border: "none", boxShadow: "none" }}
             buttonStyle={{ border: "none", backgroundColor: "#f3f4f6" }}
             containerStyle={{ border: "none", backgroundColor: "#f3f4f6" }}
         />
-
     </div>
 );
+
 
 const BookingForm = () => {
     const [selectedSessions, setSelectedSessions] = useState(8);
@@ -113,7 +112,7 @@ const BookingForm = () => {
         [t("36Months")]: 0.75,
     };
 
-    // Price Calculation
+
     const discountedPrice = basePrice * (1 - discount);
     const finalPrice = payInAdvance ? discountedPrice * (1 - advanceDiscount) : discountedPrice;
     const total = (finalPrice * selectedSessions * monthsMultiplier[selectedMonths]).toFixed(2);
@@ -140,9 +139,10 @@ const BookingForm = () => {
             accountHolder: "",
         },
         validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             console.log("Form Data:", values);
             alert("Form submitted successfully!");
+            resetForm();
         }
     });
 
@@ -154,15 +154,28 @@ const BookingForm = () => {
                     <h2 className="text-lg font-semibold text-center">{t("registrationTitle")}</h2>
                     <p className="text-center text-sm text-gray-500">{t("platformInfo")}</p>
 
-                    <PhoneField label={t("loginPhone")} name="loginPhone" setFieldValue={formik.setFieldValue} />
+                    <PhoneField
+                        label={t("loginPhone")}
+                        name="loginPhone"
+                        value={formik.values.loginPhone}
+                        setFieldValue={formik.setFieldValue}
+                        onBlur={() => formik.setFieldTouched("loginPhone", true)}
+                    />
                     {formik.touched.loginPhone && formik.errors.loginPhone && (
                         <div className="text-red-500 text-sm">{formik.errors.loginPhone}</div>
                     )}
 
-                    <PhoneField label={t("contactPhone")} name="contactPhone" setFieldValue={formik.setFieldValue} />
+                    <PhoneField
+                        label={t("contactPhone")}
+                        name="contactPhone"
+                        value={formik.values.contactPhone}
+                        setFieldValue={formik.setFieldValue}
+                        onBlur={() => formik.setFieldTouched("contactPhone", true)}
+                    />
                     {formik.touched.contactPhone && formik.errors.contactPhone && (
                         <div className="text-red-500 text-sm">{formik.errors.contactPhone}</div>
                     )}
+
 
 
                     <input

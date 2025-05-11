@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { useTranslation } from 'react-i18next'; // استيراد useTranslation
+import { useTranslation } from 'react-i18next'; 
 
 const TrustpilotWidget = () => {
-  const { t } = useTranslation(); // استخدام الترجمة
-
+  const { t } = useTranslation(); 
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';

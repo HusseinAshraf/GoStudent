@@ -175,5 +175,7 @@
     "cvcLength": "يجب أن يكون رمز CVC مكوناً من 3 أرقام",
     "iban": "رقم IBAN مطلوب",
     "accountHolder": "اسم صاحب الحساب مطلوب"
-  }
+  },
+  "formSubmittedSuccess":"تم التسجيل بنجاح"
+
 }

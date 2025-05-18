@@ -14,6 +14,43 @@ function Header() {
         setIsOpen(false);
     };
 
+    function Dropdown({ label, items }) {
+        const [isOpen, setIsOpen] = useState(false);
+
+        const toggleDropdown = () => {
+            setIsOpen(!isOpen);
+        };
+
+        return (
+            <div className="relative group">
+
+                <div
+                    className="flex items-center space-x-1 cursor-pointer text-gray-800 group-hover:text-blue-800"
+                    onClick={toggleDropdown}
+                >
+                    <span>{label}</span>
+                    <ChevronDown size={16} />
+                </div>
+
+
+                <div
+                    className={`absolute left-1/2 transform -translate-x-1/2 mt-4 w-72 bg-white border border-gray-200 rounded-md shadow-lg 
+                    ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} 
+                    group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50`}
+                >
+                    <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200 z-10"></div>
+                    <div className="py-2">
+                        {items.map((item, index) => (
+                            <a key={index} href="#" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
+                                {item}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <header className="border-b border-gray-200">
 
@@ -26,7 +63,7 @@ function Header() {
                         </Link>
                     </div>
 
-                    {/* Right Side Actions */}
+
                     <div className="hidden md:flex items-center space-x-4 text-sm">
                         <a href="#" className="text-blue-800 underline">{t('login')}</a>
                         <button className="bg-blue-800 text-white px-6 py-2.5 h-[38px] text-sm font-semibold rounded-sm hover:bg-blue-800 transition">
@@ -85,7 +122,7 @@ function Header() {
                         </div>
                     </div>
 
-                    {/* Mobile Menu Button */}
+
                     <div className="md:hidden">
                         <button onClick={() => setMobileOpen(true)}>
                             <Menu size={24} />
@@ -123,7 +160,7 @@ function Header() {
                         <Dropdown label={t("become_tutor")} items={[t("apply"), t("requirements")]} isMobile={true} />
                         <a href="#" className="block hover:text-blue-600">{t("blog")}</a>
                         <a href="#" className="block hover:text-blue-600">{t("contact")}</a>
-                        
+
                         <div className="flex justify-between items-center">
                             <a href="#" className="text-blue-700 hover:underline">{t("login")}</a>
                             <div className="relative group">
@@ -178,7 +215,7 @@ function Header() {
                                 )}
                             </div>
                         </div>
-                        
+
                         <button className="w-full bg-blue-700 text-white py-2 pt-2 rounded hover:bg-blue-800">
                             {t("get_started")}
                         </button>
@@ -191,41 +228,6 @@ function Header() {
 }
 
 
-function Dropdown({ label, items }) {
-    const [isOpen, setIsOpen] = useState(false);
 
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-
-    return (
-        <div className="relative group">
-
-            <div
-                className="flex items-center space-x-1 cursor-pointer text-gray-800 group-hover:text-blue-800"
-                onClick={toggleDropdown}
-            >
-                <span>{label}</span>
-                <ChevronDown size={16} />
-            </div>
-
-
-            <div
-                className={`absolute left-1/2 transform -translate-x-1/2 mt-4 w-72 bg-white border border-gray-200 rounded-md shadow-lg 
-                    ${isOpen ? "opacity-100 visible" : "opacity-0 invisible"} 
-                    group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50`}
-            >
-                <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-l border-t border-gray-200 z-10"></div>
-                <div className="py-2">
-                    {items.map((item, index) => (
-                        <a key={index} href="#" className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">
-                            {item}
-                        </a>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
 
 export default Header;

@@ -4,81 +4,44 @@ import "react-phone-input-2/lib/style.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
-import { t } from "i18next";
+// import { t } from "i18next";
 import i18n from "../../i18n";
-import Cleave from 'cleave.js/react'
-
-
-
-const basePrice = 29;
-const discount = 0.04;
-const advanceDiscount = 0.03;
-
-
-
-const validationSchema = Yup.object({
-    loginPhone: Yup.string().required(t("validation.loginPhone")),
-    contactPhone: Yup.string().required(t("validation.contactPhone")),
-    email: Yup.string().email(t("validation.email")).required(t("validation.emailRequired")),
-    name: Yup.string().required(t("validation.name")),
-    address: Yup.string().required(t("validation.address")),
-    nr: Yup.string().required(t("validation.nr")),
-    postalCode: Yup.string().required(t("validation.postalCode")),
-    city: Yup.string().required(t("validation.city")),
-    country: Yup.string().required(t("validation.country")),
-    paymentMethod: Yup.string().required(t("validation.paymentMethod")),
-
-    // Card fields validation
-    cardHolder: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
-        paymentMethod === "Card" ? schema.required(t("validation.cardHolder")) : schema
-    ),
-
-    cardNumber: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
-        paymentMethod === "Card"
-            ? schema
-                .length(19, t("validation.cardNumberLength"))
-                .required(t("validation.cardNumber"))
-            : schema
-    ),
-
-    expiry: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
-        paymentMethod === "Card" ? schema.required(t("validation.expiry")) : schema
-    ),
-
-    cvc: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
-        paymentMethod === "Card"
-            ? schema.length(3, t("validation.cvcLength")).required(t("validation.cvc"))
-            : schema
-    ),
-
-    // SEPA fields validation
-    iban: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
-        paymentMethod === "SEPA" ? schema.required(t("validation.iban")) : schema
-    ),
-
-    accountHolder: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
-        paymentMethod === "SEPA" ? schema.required(t("validation.accountHolder")) : schema
-    )
-});
-
+import Cleave from 'cleave.js/react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const PhoneField = ({ label, name, setFieldValue, value, onBlur }) => (
-    <div>
-        <label className="block text-sm font-medium mb-1">{label}</label>
+    <div dir="ltr"> 
+        <label className={`block text-sm font-medium mb-1 ${i18n.language === "ar" ? "text-right" : "text-left"}`}>{label}</label>
         <PhoneInput
-            country={"us"}
+            country={"ae"}
             value={value}
             onChange={(value) => setFieldValue(name, value)}
             onBlur={onBlur}
-            inputStyle={{ width: "100%", backgroundColor: "#f3f4f6", border: "none", boxShadow: "none" }}
-            buttonStyle={{ border: "none", backgroundColor: "#f3f4f6" }}
-            containerStyle={{ border: "none", backgroundColor: "#f3f4f6" }}
+            inputStyle={{
+                width: "100%",
+                backgroundColor: "#f3f4f6",
+                border: "none",
+                boxShadow: "none",
+                direction: "ltr" // تأكيد الاتجاه للحقل نفسه
+            }}
+            buttonStyle={{
+                border: "none",
+                backgroundColor: "#f3f4f6",
+            }}
+            containerStyle={{
+                border: "none",
+                backgroundColor: "#f3f4f6",
+                direction: "ltr", // لضمان أن العلم يبقى على اليسار
+            }}
         />
     </div>
 );
 
 
-const BookingForm = () => {
+function BookingForm() {
+    const basePrice = 29;
+    const discount = 0.04;
+    const advanceDiscount = 0.03;
     const [selectedSessions, setSelectedSessions] = useState(8);
     const [selectedMonths, setSelectedMonths] = useState("6 MONTHS");
     const [payInAdvance, setPayInAdvance] = useState(false);
@@ -112,12 +75,58 @@ const BookingForm = () => {
         [t("36Months")]: 0.75,
     };
 
-
     const discountedPrice = basePrice * (1 - discount);
     const finalPrice = payInAdvance ? discountedPrice * (1 - advanceDiscount) : discountedPrice;
     const total = (finalPrice * selectedSessions * monthsMultiplier[selectedMonths]).toFixed(2);
     const regularTotal = (basePrice * selectedSessions * monthsMultiplier[selectedMonths]).toFixed(2);
     const totalDiscount = (regularTotal - total).toFixed(2);
+
+
+
+    const validationSchema = Yup.object({
+        loginPhone: Yup.string().required(t("validation.loginPhone")),
+        contactPhone: Yup.string().required(t("validation.contactPhone")),
+        email: Yup.string().email(t("validation.email")).required(t("validation.emailRequired")),
+        name: Yup.string().required(t("validation.name")),
+        address: Yup.string().required(t("validation.address")),
+        nr: Yup.string().required(t("validation.nr")),
+        postalCode: Yup.string().required(t("validation.postalCode")),
+        city: Yup.string().required(t("validation.city")),
+        country: Yup.string().required(t("validation.country")),
+        paymentMethod: Yup.string().required(t("validation.paymentMethod")),
+
+        // Card fields validation
+        cardHolder: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+            paymentMethod === "Card" ? schema.required(t("validation.cardHolder")) : schema
+        ),
+
+        cardNumber: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+            paymentMethod === "Card"
+                ? schema
+                    .length(19, t("validation.cardNumberLength"))
+                    .required(t("validation.cardNumber"))
+                : schema
+        ),
+
+        expiry: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+            paymentMethod === "Card" ? schema.required(t("validation.expiry")) : schema
+        ),
+
+        cvc: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+            paymentMethod === "Card"
+                ? schema.length(3, t("validation.cvcLength")).required(t("validation.cvc"))
+                : schema
+        ),
+
+        // SEPA fields validation
+        iban: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+            paymentMethod === "SEPA" ? schema.required(t("validation.iban")) : schema
+        ),
+
+        accountHolder: Yup.string().when("paymentMethod", (paymentMethod, schema) =>
+            paymentMethod === "SEPA" ? schema.required(t("validation.accountHolder")) : schema
+        )
+    });
 
     const formik = useFormik({
         initialValues: {
@@ -141,13 +150,37 @@ const BookingForm = () => {
         validationSchema,
         onSubmit: (values, { resetForm }) => {
             console.log("Form Data:", values);
-            alert("Form submitted successfully!");
+
+            // Show success toast notification instead of alert
+            toast.success(t("formSubmittedSuccess"), {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
             resetForm();
         }
     });
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10">
+            {/* Toast Container for notifications */}
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={true}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
             <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-lg">
                 {/* LEFT FORM SECTION */}
                 <form id={formId} className="space-y-4 p-6 bg-white rounded-lg shadow-md" onSubmit={formik.handleSubmit}>
@@ -176,8 +209,6 @@ const BookingForm = () => {
                         <div className="text-red-500 text-sm">{formik.errors.contactPhone}</div>
                     )}
 
-
-
                     <input
                         name="email"
                         type="email"
@@ -190,7 +221,6 @@ const BookingForm = () => {
                         <div className="text-red-500 text-sm">{formik.errors.email}</div>
                     )}
 
-
                     <input
                         name="name"
                         type="text"
@@ -202,7 +232,6 @@ const BookingForm = () => {
                     {formik.touched.name && formik.errors.name && (
                         <div className="text-red-500 text-sm">{formik.errors.name}</div>
                     )}
-
 
                     <div className="grid grid-cols-2 gap-2">
                         <input
@@ -231,7 +260,6 @@ const BookingForm = () => {
                         {formik.touched.nr && formik.errors.nr && (
                             <div className="text-red-500 text-sm">{formik.errors.nr}</div>
                         )}
-
                     </div>
 
                     <div className="grid grid-cols-3 gap-2">
@@ -271,8 +299,6 @@ const BookingForm = () => {
                         {formik.touched.country && formik.errors.country && (
                             <div className="text-red-500 text-sm">{formik.errors.country}</div>
                         )}
-
-
                     </div>
 
                     <select
@@ -285,10 +311,8 @@ const BookingForm = () => {
                         ))}
                     </select>
 
-
                     <div>
                         <p className="text-sm font-medium mb-1">{t("selectPaymentMethod")}</p>
-
 
                         <div className="flex gap-4 items-center mb-2">
                             <label className="flex items-center gap-1">
@@ -299,14 +323,11 @@ const BookingForm = () => {
                                     checked={formik.values.paymentMethod === "SEPA"}
                                     onChange={() => {
                                         formik.setFieldValue("paymentMethod", "SEPA");
-                                        formik.validateForm(); // لضمان إعادة التحقق من الصحة عند تغيير طريقة الدفع
+                                        formik.validateForm();
                                     }}
                                 />
                                 <span>{t("sepa")}</span>
-
-
                             </label>
-
 
                             <label className="flex items-center gap-1">
                                 <input
@@ -316,13 +337,11 @@ const BookingForm = () => {
                                     checked={formik.values.paymentMethod === "Card"}
                                     onChange={() => {
                                         formik.setFieldValue("paymentMethod", "Card");
-                                        formik.validateForm(); // إعادة التحقق من الصحة
+                                        formik.validateForm();
                                     }}
                                 />
                                 <span>{t("card")}</span>
                             </label>
-
-
                         </div>
 
                         {/* Card Payment Fields */}
@@ -337,9 +356,6 @@ const BookingForm = () => {
                                     className="w-full p-2 rounded bg-gray-100"
                                 />
 
-
-
-
                                 <div className="grid grid-cols-2 gap-2 mt-2">
                                     <Cleave
                                         value={formik.values.cardNumber}
@@ -348,7 +364,6 @@ const BookingForm = () => {
                                         className="col-span-2 p-2 rounded bg-gray-100 w-full"
                                         placeholder={t("cardNumber")}
                                     />
-
 
                                     <Cleave
                                         value={formik.values.expiry}
@@ -368,11 +383,9 @@ const BookingForm = () => {
                                         maxLength="4"
                                         pattern="\d{3,4}"
                                     />
-
                                 </div>
                             </div>
                         )}
-
 
                         {/* SEPA Payment Fields */}
                         {formik.values.paymentMethod === "SEPA" && (
@@ -389,7 +402,6 @@ const BookingForm = () => {
                                     placeholder="DE89 3704 0044 0532 0130 00"
                                 />
 
-
                                 <input
                                     type="text"
                                     name="accountHolder"
@@ -398,12 +410,9 @@ const BookingForm = () => {
                                     placeholder={t("accountHolder")}
                                     className="w-full p-2 rounded bg-gray-100 mt-2"
                                 />
-
                             </div>
                         )}
                     </div>
-
-
                 </form>
 
                 {/* RIGHT SUMMARY SECTION */}
@@ -444,7 +453,11 @@ const BookingForm = () => {
                             {t("termsNotice")}
                         </label>
 
-                        <button form={formId} type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded text-sm font-medium">
+                        <button
+                            form={formId}
+                            type="submit"
+                            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded text-sm font-medium"
+                        >
                             {t('orderNow')}
                         </button>
                         <p className="text-center text-xs text-gray-500">{t("satisfactionRate")}</p>

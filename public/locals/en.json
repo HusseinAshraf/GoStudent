@@ -174,5 +174,6 @@
     "cvcLength": "CVC must be 3 digits",
     "iban": "IBAN is required",
     "accountHolder": "Account holder is required"
-  }
+  },
+  "formSubmittedSuccess":"Form Submitted Success"
 }
